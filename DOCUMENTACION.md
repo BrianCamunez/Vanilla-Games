@@ -226,6 +226,7 @@ Este diagrama refleja de forma resumida qué acciones se pueden llevar a cabo en
     5. El sistema muestra una confirmación de que la información de que el usuario ha sido borrado correctamente.
 
 **Errores**
+
 Vamos a repasar los diferentes casos de uso analizando el flujo principal y añadiendo los flujos alternativos para contemplar los posibles errores del sistema. Puedes considerar los siguientes mensajes:
 
     **· Error de conexión:** El servidor no puede establecer una conexión con la base de datos, lo que impide que se puedan realizar operaciones en la plataforma. El sistema debería mostrar un mensaje de error indicando que no se pudo conectar con la base de datos y ofrecer la posibilidad de volver a intentarlo o contactar con el soporte técnico.
