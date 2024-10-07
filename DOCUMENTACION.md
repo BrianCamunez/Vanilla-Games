@@ -272,3 +272,104 @@ Esta ventana de edición permitirá, además de modificar los datos del usuario,
 **Listado de todos los proyectos**
 
 ![Listado de todos los proyectos](https://carrebola.github.io/vanillaPill/assets/images/1684861508192-6b771260fe99faccc760b23f71f02406.jpg)
+
+En esta página podemos ver, en la pestaña izquierda, todos los proyectos en forma de tabla. La pestaña derecha mostrará solo los proyectos que ha subido el usuario que ha iniciado la sesión.
+
+Al hacer clic en cualquier parte de la fila se accede al detalle del proyecto.
+
+También tenemos un buscador que permite buscar proyectos por palabras clave en el nombre o descripción.
+
+Las celdas de encabezado de las tablas incluyen un icono (flecha hacia arriba o hacia abajo) que permitirá ordenar la tabla por la columna en concreto.
+
+**Listado de Mis proyectos**
+
+![Listado de Mis proyectos](https://carrebola.github.io/vanillaPill/assets/images/1684861508186-f38d99164909a0783d2040ce646e928a.jpg)
+
+En esta pestaña podemos ver los trabajos pertenecientes al usuario logueado. En cada fila aparece, además, un icono para editar y borrar el proyecto correspondiente. Por otro lado tenemos la opción de subir un nuevo proyecto.
+
+**Detalle de un proyecto**
+
+![Detalle de un proyecto](https://carrebola.github.io/vanillaPill/assets/images/1684861508178-ed1f5e41681a1dcee1edac19f807c239.jpg)
+
+Si el usuario que está viendo la información de un proyecto en concreto es el autor de dicho proyecto, aparecerá un icono para la edición del mismo.
+
+**Nuevo proyecto / Editar un proyecto**
+
+![Nuevo proyecto / Editar un proyecto](https://carrebola.github.io/vanillaPill/assets/images/1684861508170-9db2cd42ef7a339d517e3d0b38d4ae45.jpg)
+
+Esta vista sirve tanto para crear un nuevo proyecto como para editarlo.
+
+Si el proyecto es nuevo, el botón mostrará el texto ENVIAR, pero si estamos editándolo aparecerá el texto ACTUALIZAR. Al crear o actualizar el proyecto, la web nos reenvía a la vista 'Detalle de proyecto'.
+
+**Panel administración de proyectos**
+
+![Panel administración de proyectos](https://carrebola.github.io/vanillaPill/assets/images/1684861508161-c9cfd413730d67ea74b43e48fedea5ec.jpg)
+
+Si tienes el rol 'administrador' aparecerá el item 'Panel administración' en el menú superior específico. Este item nos permite cargar la vista 'Panel administración de proyectos'. Desde esta vista también podemos acceder al 'Panel administración de usuarios'.
+
+Esta vista permite editar o borrar cualquier proyecto haciendo click en los iconos correspondientes. La opción editar nos llevará a la vista 'Editar proyecto'
+
+**Panel administración de usuarios**
+
+![Panel administración de usuarios](https://carrebola.github.io/vanillaPill/assets/images/1684861508152-04e98cfb1faeecf2a53ea921bdd63ebe.jpg)
+
+Esta vista permite editar los datos de los usuarios. Por supuesto es solo accesible para los administradores.
+
+En esta vista, el método para editar la información es diferentes. Aquí los datos aparecen sobre 'inputs', de manera que al hacer clic sobre ellos, aparecerá el cursor de edición. Se pueden modificar todos los datos (en especial el 'estado' y el 'rol' del usuario) excepto el email.
+
+## Test de usuarios inicial
+
+**Primer Test de Usabilidad**
+
+Para este primer test hemos preparado las siguientes acciones:
+
+Suponiendo que eres un usuario no registrado:
+
+    Accede a la información general 'A cerca de' de esta web.
+    Regístrate.
+    Logueate.
+    Modifica tu perfil añadiendo una imagen de avatar.
+    Busca un proyecto llamado 'Tetris'.
+    Accede al detalle de este proyecto.
+    Cierra sesión.
+
+Suponiendo que eres un usuario con rol 'Desarrollador':
+
+    Crea un proyecto nuevo.
+    Accede a la lista de tus proyectos.
+    Muestra el detalle de tu nuevo proyecto.
+    Edita tu proyecto cambiando la descripción.
+    Borra tu proyecto.
+
+Suponiendo que eres un usuario con rol 'Administrador':
+
+    Muestra la lista de proyectos.
+    Borra un proyecto.
+    Modifica el nombre de un proyecto.
+    Muestra la listra de todos los usuarios registrados.
+    Canvia el rol de uno de ellos.
+    Modifica la imagen de su avatar.
+
+**Conclusiones y modificaciones**
+
+De este primer test de usuario se desprenden las siguientes conclusiones:
+
+    La vista de proyectos en forma de tabla no es muy atractiva.
+    El usuario ha tenido dificultades a la hora de intentar modificar la imagen avatar de un usuario.
+
+Para mejorar estos pequeños problemas de usabilidad vamos a tomar las siguientes acciones:
+
+    En la vista de proyectos vamos crear un par de botones para poder alternar entre ver los proyectos en forma de tabla o en forma de tarjetas.
+        En la vista de administración de usuarios, añadir un pequeño icono (un lápiz) sobre la imagen del avatar del usuario para que se intuya que, al hacer clic sobre la imagen, se accede a la ventana de modificación de perfil.
+
+Estos serían los bocetos actualizados:
+
+**Vista de proyectos**
+
+# HACER Y PONER IMAGEN
+
+**Vista del Panel de administraición de usuarios.**
+
+# HACER Y PONER IMAGEN
+
+Ahora que tenemos los bocetos creados y testeados, es el momento de pasar al siguiente nivel: El diseño de los wireframes.
