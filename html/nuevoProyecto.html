@@ -118,8 +118,55 @@
             <img class="img-fluid" src="./images" alt="" />
           </div>
           <div class="col-12 col-md-8">
-            <form action="" class="form">
-              <label for="nombre" class="form-label"
+            <form novalidate action="" class="form needs-validation">
+              <label for="nombre" class="form-label">
+                <strong>Nombre: </strong>
+              </label>
+              <input
+                required
+                type="text"
+                id="nombre"
+                value="Nombre Autor"
+                class="form-control"
+              />
+              <div class="invalid-feedback">Debes de poner un nombre</div>
+
+              <label for="descripcion" class="form-label mt-2">
+                <strong>Descripción: </strong>
+              </label>
+              <textarea
+                id="descripcion"
+                class="form-control"
+                rows="4"
+              ></textarea>
+
+              <label for="estado" class="form-label mt-2">
+                <strong>Estado: </strong>
+              </label>
+              <select required id="estado" class="form-control">
+                <option value="estado">estado</option>
+                <option value="otro estado">otro estado</option>
+              </select>
+              <div class="invalid-feedback">Debe de seleccionar un estado</div>
+
+              <label for="fecha" class="form-label mt-2">
+                <strong>Fecha: </strong>
+              </label>
+              <input required type="date" id="fecha" class="form-control" />
+              <div class="invalid-feedback">
+                El formato de la fecha no es el correcto
+              </div>
+
+              <label for="enlace" class="form-label mt-2">
+                <strong>Enlace: </strong>
+              </label>
+              <input required type="url" id="enlace" class="form-control" />
+              <div class="invalid-feedback">
+                El formato de la URL no es correcto
+              </div>
+
+              <input type="submit" name="Enviar" id="Enviar" value="Enviar" />
+              <!-- <label for="nombre" class="form-label"
                 ><strong>Nombre: </strong></label
               >
               <input
@@ -129,6 +176,7 @@
                 value="Nombre Autor"
                 class="form-control"
               />
+              <div class="invalid-feedback">Debes de poner un nombre</div>
               <label for="descripcion" class="form-label mt-2"
                 ><strong>Descripción: </strong></label
               >
@@ -142,7 +190,7 @@ Lorem ipsum dolor sit amet consectetur adipisicing elit. Iusto tempora esse nesc
                 <option value="estado">estado</option>
                 <option value="otro estado">otro estado</option>
               </select>
-
+              <div class="invalid-feedback">Debe de seleccionar un estado</div>
               <label for="fecha" class="form-label mt-2"
                 ><strong>Fecha: </strong></label
               >
@@ -152,16 +200,24 @@ Lorem ipsum dolor sit amet consectetur adipisicing elit. Iusto tempora esse nesc
                 class="form-control"
                 value="12/12/2023"
               />
-              <label for="nombre" class="forn-label mt-2"
+              <div class="invalid-feedback">
+                El formato de la fecha no es el correcto
+              </div>
+              <label for="enlace" class="forn-label mt-2"
                 ><strong>Enlace: </strong></label
               >
               <input
+                required
                 type="url"
                 id="enlace"
                 class="form-control"
                 value="http://enlace.com"
               />
-              <label for="nombre" class="form-label mt-2"
+              <div class="invalid-feedback">
+                El formato de la URL no es correcto
+              </div>
+              <div class="valid-feedback">ok</div>
+              <label for="repositorio" class="form-label mt-2"
                 ><strong>Repositorio: </strong></label
               >
               <input
@@ -174,7 +230,7 @@ Lorem ipsum dolor sit amet consectetur adipisicing elit. Iusto tempora esse nesc
                 type="submit"
                 class="btn btn-success mt-3"
                 value="Subir proyecto"
-              />
+              /> -->
             </form>
           </div>
         </div>
@@ -198,5 +254,40 @@ Lorem ipsum dolor sit amet consectetur adipisicing elit. Iusto tempora esse nesc
         </div>
       </nav>
     </footer>
+    <script>
+      const formulario = document.querySelector("form");
+
+      formulario.addEventListener("submit", (event) => {
+        event.preventDefault();
+        event.stopPropagation();
+
+        // Validar todos los campos dentro del formulario
+        formulario.querySelectorAll(".form-control").forEach((campo) => {
+          const invalidFeedback = campo.nextElementSibling; // El mensaje de error
+          const validFeedback = invalidFeedback.nextElementSibling; // El mensaje de éxito
+
+          if (campo.checkValidity()) {
+            // Si el campo es válido, mostramos el mensaje de éxito y ocultamos el de error
+            invalidFeedback.classList.remove("invalid-feedback");
+            invalidFeedback.classList.add("valid-feedback");
+            validFeedback.classList.remove("valid-feedback");
+            validFeedback.classList.add("valid-feedback");
+          } else {
+            // Si el campo no es válido, mostramos el mensaje de error y ocultamos el de éxito
+            invalidFeedback.classList.remove("valid-feedback");
+            invalidFeedback.classList.add("invalid-feedback");
+            validFeedback.classList.remove("valid-feedback");
+          }
+        });
+
+        // Se aplica la clase 'was-validated' para los estilos de validación de Bootstrap
+        formulario.classList.add("was-validated");
+      });
+    </script>
+    <script
+      src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"
+      integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM"
+      crossorigin="anonymous"
+    ></script>
   </body>
 </html>
