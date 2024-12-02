@@ -123,6 +123,7 @@
                 ><strong>Nombre: </strong></label
               >
               <input
+                required
                 type="text"
                 id="nombre"
                 value="Nombre Autor"
@@ -137,10 +138,11 @@ Lorem ipsum dolor sit amet consectetur adipisicing elit. Iusto tempora esse nesc
               <label for="estado" class="form-label mt-2"
                 ><strong>Estado: </strong></label
               >
-              <select id="estado" class="form-control">
+              <select required id="estado" class="form-control">
                 <option value="estado">estado</option>
                 <option value="otro estado">otro estado</option>
               </select>
+
               <label for="fecha" class="form-label mt-2"
                 ><strong>Fecha: </strong></label
               >
@@ -154,7 +156,7 @@ Lorem ipsum dolor sit amet consectetur adipisicing elit. Iusto tempora esse nesc
                 ><strong>Enlace: </strong></label
               >
               <input
-                type="text"
+                type="url"
                 id="enlace"
                 class="form-control"
                 value="http://enlace.com"
