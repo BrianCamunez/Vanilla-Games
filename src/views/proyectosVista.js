@@ -1,4 +1,4 @@
-export const proyectosVista = {
+export default {
     template: 
     `
     <div class="container">

@@ -1,4 +1,4 @@
-export const proyectoNuevoVista = {
+export default {
     template: 
     `
     <div class="container">

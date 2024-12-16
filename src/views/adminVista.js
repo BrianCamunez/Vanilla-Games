@@ -1,4 +1,4 @@
-export const adminVista = {
+export default {
     template:
     `
     <div class="container-fluid">
