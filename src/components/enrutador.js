@@ -3,17 +3,17 @@ export const enrutador = {
 
     // Objeto (diccionario) con todas las rutas y su vista asociada
     rutas: {
-      home: import('../vistas/homeVista.js'),
+      home: import('../views/homeVista.js'),
       // Usuarios
-      admin: import('../vistas/adminVista.js'),
-      registro: import('../vistas/registroVista.js'),
-      login: import('../vistas/loginVista.js'),
+      admin: import('../views/adminVista.js'),
+      registro: import('../views/registroVista.js'),
+      login: import('../views/loginVista.js'),
       // Proyectos
-      proyectos: import('../vistas/proyectosVista.js'),
-      proyectoNuevo: import('../vistas/proyectoNuevoVista.js'),
-      proyectoEditar: import('../vistas/proyectoEditarVista.js'),
-      proyectoDetalle: import('../vistas/proyectoDetalleVista.js'),
-      404: import('../vistas/404.js')
+      proyectos: import('../views/proyectosVista.js'),
+      proyectoNuevo: import('../views/proyectoNuevoVista.js'),
+      proyectoEditar: import('../views/proyectoEditarVista.js'),
+      proyectoDetalle: import('../views/proyectoDetalleVista.js'),
+      404: import('../views/404.js')
     },
   
     // Método que obtiene la ruta del navegador
