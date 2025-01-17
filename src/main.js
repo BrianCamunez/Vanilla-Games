@@ -7,9 +7,10 @@ import 'bootstrap'
 import './scss/styles.scss'
 
 async function cargarVista(){
-  const componente = await import("./views/homeVista")
+  const componente = await import("./views/loginVista")
   const vista = componente.default
   document.querySelector("main").innerHTML = vista.template
+  vista.script()
 }
 
 cargarVista()
