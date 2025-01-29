@@ -12,4 +12,5 @@ enrutador.observadorRutas()
 window.location = '#/home'
 
 document.querySelector("header").innerHTML = header.template
+header.script()
 document.querySelector("footer").innerHTML = footer.template

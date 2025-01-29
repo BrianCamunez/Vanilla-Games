@@ -1,3 +1,5 @@
+import { ls } from './funciones'
+import { menuRol, menuUsuario } from './menus'
 
 export const header = {
     template: // html
@@ -50,7 +52,38 @@ export const header = {
   </div>
 </nav>
   
-    `
+    `,
+    script: ()=>{
+      console.log('Header cargado')
+    
+      const rolUsuario = ls.getUsuario().rol
+  
+      switch (rolUsuario) {
+        case 'registrado':
+          // menú rol
+          document.querySelector('#menuRol').innerHTML = menuRol.templateRegistrado
+          // menú usuario
+          document.querySelector('#menuUsuario').innerHTML = menuUsuario.templateRegistrado
+          break
+        case 'desarrollador':
+          // menú rol
+          document.querySelector('#menuRol').innerHTML = menuRol.templateDesarrollador
+          // menú usuario
+          document.querySelector('#menuUsuario').innerHTML = menuUsuario.templateDesarrollador
+          break
+        case 'admin':
+          // menú rol
+          document.querySelector('#menuRol').innerHTML = menuRol.templateAdmin
+          // menú usuario
+          document.querySelector('#menuUsuario').innerHTML = menuUsuario.templateAdmin
+          break
+        default : // Para usuarios anónimos
+          // menú rol
+          document.querySelector('#menuRol').innerHTML = menuRol.templateAnonimo
+          // menú usuario: No tiene
+          break
+      }
+    }  
   }
   
   
