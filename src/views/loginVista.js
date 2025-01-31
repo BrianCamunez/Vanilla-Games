@@ -1,3 +1,5 @@
+import { perfiles } from '../../bd/datosPrueba'
+
 export default  {
     template:
     `
@@ -7,7 +9,7 @@ export default  {
           <form novalidate action="" class="form border shadow-sm p-3">
             <div>
               <label for="email" class="form-label">Email:</label>
-              <input required type="email" class="form-control" />
+              <input required name="email" type="email" class="form-control" />
               <div class="invalid-feedback">
                 El formato del email no es correcto
               </div>
@@ -17,6 +19,7 @@ export default  {
               <input
                 required
                 id="pass"
+                name="pass"
                 type="password"
                 minlength="6"
                 class="form-control"
@@ -73,5 +76,41 @@ export default  {
 
         }
       },false)
+
+      function enviarDatos (formulario) {
+        const email = formulario.email.value
+        const pass = formulario.password.value
+  
+        // buscamos el indice del email en el array perfiles
+        const indexUser = perfiles.findIndex((user) => user.email === email) // 1
+        // Si encuentra un usuario
+        if (indexUser > 0) {
+          // Si la contraseña es correcta
+          if (perfiles[indexUser].contraseña === pass) {
+            console.log('¡login correcto!')
+            const usuario = {
+              nombre: perfiles[indexUser].nombre,
+              apellidos: perfiles[indexUser].apellidos,
+              email: perfiles[indexUser].email,
+              rol: perfiles[indexUser].rol,
+              avatar: perfiles[indexUser].avatar,
+              user_id: perfiles[indexUser].user_id
+            }
+            // Guardamos datos de usaurio en localstorage
+            ls.setUsuario(usuario)
+            // Cargamos página home
+            window.location = '#/proyectos'
+            // Actualizamos el header para que se muestren los menús que corresponden al rol
+            header.script()
+          } else {
+            // console.log('La contraseña no corresponde')
+            alert('El usuario no existe o la contraseña no es correcta')
+          }
+        } else {
+          // console.log('El usuario no existe')
+          alert('El usuario no existe o la contraseña no es correcta')
+        }
+      }
+
     }
 }

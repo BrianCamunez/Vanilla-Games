@@ -57,39 +57,62 @@ export const header = {
     `,
     script: ()=>{
       console.log('Header cargado')
+    // Cargamos la ventana modal para editar perfil
+    document.querySelector('#modal').innerHTML = editarPerfil.template
+    // Y ejecutamos su lógica
+    editarPerfil.script()
+    const rolUsuario = ls.getUsuario().rol
+    switch (rolUsuario) {
+      case 'registrado':
+        // menú rol
+        document.querySelector('#menuRol').innerHTML = menuRol.templateRegistrado
+        // menú usuario
+        document.querySelector('#menuUsuario').innerHTML = menuUsuario.templateRegistrado
+        break
+      case 'desarrollador':
+        // menú rol
+        document.querySelector('#menuRol').innerHTML = menuRol.templateDesarrollador
+        // menú usuario
+        document.querySelector('#menuUsuario').innerHTML = menuUsuario.templateDesarrollador
+        break
+      case 'admin':
+        // menú rol
+        document.querySelector('#menuRol').innerHTML = menuRol.templateAdmin
+        // menú usuario
+        document.querySelector('#menuUsuario').innerHTML = menuUsuario.templateAdmin
+        break
+      default : // Para usuarios anónimos
+        // menú rol
+        document.querySelector('#menuRol').innerHTML = menuRol.templateAnonimo
+        // menú usuario - No debe aparecer nada
+        document.querySelector('#menuUsuario').innerHTML = ''
+        break
+    }
 
-      ls.setUsuario({ email: 'chafardera@gmial.com', rol: 'registrado' })
-    
-      const rolUsuario = ls.getUsuario().rol
-  
-      switch (rolUsuario) {
-        case 'registrado':
-          // menú rol
-          document.querySelector('#menuRol').innerHTML = menuRol.templateRegistrado
-          // menú usuario
-          document.querySelector('#menuUsuario').innerHTML = menuUsuario.templateRegistrado
-          document.querySelector('#modal').innerHTML = editarPerfil.template
-          break
-        case 'desarrollador':
-          // menú rol
-          document.querySelector('#menuRol').innerHTML = menuRol.templateDesarrollador
-          // menú usuario
-          document.querySelector('#menuUsuario').innerHTML = menuUsuario.templateDesarrollador
-          document.querySelector('#modal').innerHTML = editarPerfil.template
-          break
-        case 'admin':
-          // menú rol
-          document.querySelector('#menuRol').innerHTML = menuRol.templateAdmin
-          // menú usuario
-          document.querySelector('#menuUsuario').innerHTML = menuUsuario.templateAdmin
-          document.querySelector('#modal').innerHTML = editarPerfil.template
-          break
-        default : // Para usuarios anónimos
-          // menú rol
-          document.querySelector('#menuRol').innerHTML = menuRol.templateAnonimo
-          // menú usuario: No tiene
-          break
+    // Y actualizamos los datos de menu de usuario si es que se está mostrando
+    try {
+      // email y rol
+      document.querySelector('#emailUserMenu').innerHTML = ls.getUsuario().email
+      document.querySelector('#rolUserMenu').innerHTML = ls.getUsuario().rol
+      // para la imagen de avatar (avatar.png si el campo está vacío)
+      const imagen = ls.getUsuario().avatar === '' ? 'images/avatar.svg' : ls.getUsuario().avatar
+      document.querySelector('#avatarMenu').setAttribute('src', imagen)
+    } catch (error) {
+      console.log('El usuario no está registrado y no tiene menú de usuario')
+    }
+
+    // Cerrar sesión
+    // Capturamos clic sobre el item de cerrar sesión
+    document.querySelector('header').addEventListener('click', (e) => {
+      if (e.target.classList.contains('cerrarSesion')) {
+        e.preventDefault()
+        // Borramos el localstorage
+        ls.setUsuario('')
+        // Cargamos la pagina home
+        window.location = '#/home'
+        header.script()
       }
+    })
     }  
   }
   
