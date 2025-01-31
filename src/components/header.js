@@ -1,5 +1,6 @@
 import { ls } from './funciones'
 import { menuRol, menuUsuario } from './menus'
+import { editarPerfil } from './editarPerfil'
 
 export const header = {
     template: // html
@@ -47,7 +48,8 @@ export const header = {
     
       <!-- Aquí va el Menu usuario -->
       <div id="menuUsuario"></div>
-    
+      
+      <div id="modal"></div>
     </div>
   </div>
 </nav>
@@ -66,18 +68,21 @@ export const header = {
           document.querySelector('#menuRol').innerHTML = menuRol.templateRegistrado
           // menú usuario
           document.querySelector('#menuUsuario').innerHTML = menuUsuario.templateRegistrado
+          document.querySelector('#modal').innerHTML = editarPerfil.template
           break
         case 'desarrollador':
           // menú rol
           document.querySelector('#menuRol').innerHTML = menuRol.templateDesarrollador
           // menú usuario
           document.querySelector('#menuUsuario').innerHTML = menuUsuario.templateDesarrollador
+          document.querySelector('#modal').innerHTML = editarPerfil.template
           break
         case 'admin':
           // menú rol
           document.querySelector('#menuRol').innerHTML = menuRol.templateAdmin
           // menú usuario
           document.querySelector('#menuUsuario').innerHTML = menuUsuario.templateAdmin
+          document.querySelector('#modal').innerHTML = editarPerfil.template
           break
         default : // Para usuarios anónimos
           // menú rol
