@@ -55,6 +55,8 @@ export const header = {
     `,
     script: ()=>{
       console.log('Header cargado')
+
+      ls.setUsuario({ email: 'chafardera@gmial.com', rol: 'registrado' })
     
       const rolUsuario = ls.getUsuario().rol
   
