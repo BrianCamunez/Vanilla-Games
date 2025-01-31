@@ -68,7 +68,7 @@ export const perfiles = [
       user_id: '36f66b5e-aa59-4f96-b6a8-3c890d6a452c',
       nombre: 'Salto Espacial',
       descripcion: 'Juego de plataforma espacial con saltos emocionantes',
-      imagen: 'imagen1.jpg',
+      imagen: 'https://img.freepik.com/vector-gratis/astronauta-nave-espacial-espacio-exterior_603843-2948.jpg',
       enlace: 'https://salto-espacial.com',
       repositorio: 'https://github.com/usuario/salto-espacial',
       estado: 'En desarrollo',
