@@ -1,3 +1,5 @@
+import { proyectos } from '../../bd/datosPrueba'
+
 export default {
     template: 
     `
@@ -47,10 +49,7 @@ export default {
             </div>
           </div>
           <div class="col-12 d-none d-xl-block" style="overflow-x: auto">
-            <table
-              class="table table-hover align-middle mt-3"
-              style="min-width: 1000px"
-            >
+            <table class="table table-hover align-middle mt-3" style="min-width: 1000px">
               <thead>
                 <tr>
                   <th></th>
@@ -77,6 +76,7 @@ export default {
                   <th></th>
                 </tr>
               </thead>
+              <tbody id="tbodyProyectos">
               <tr>
                 <td>
                   <div class="containerImagen">
@@ -129,6 +129,7 @@ export default {
                 <td>13/12/2021</td>
                 <td>?</td>
               </tr>
+              </tbody>
             </table>
           </div>
           <div class="d-xl-none row">
@@ -368,5 +369,101 @@ export default {
           </div>
         </div>
       </div>
-    `
+    `,
+    script: () =>{
+      const pintaTabla = (proyectos) => {
+        let tbodyProyectos = ''
+        // Para cada proyecto del array 'proyectos'
+        proyectos.forEach(proyecto => {
+        // sumamos un tr con los datos del proyecto
+          tbodyProyectos += `
+        <tr>
+          <td>
+            <div class="containerImagen">
+              <img 
+                width="200px" 
+                src=${proyecto.imagen || 'images/imagenVacia.png'} 
+                alt="imagen proyecto" />
+            </div>
+          </td>
+          <td>${proyecto.nombre}</td>
+          <td>${proyecto.descripcion}</td>
+          <td><a href="${proyecto.enlace}"><i class="bi bi-link fs-4"></i></a></td>
+          <td><a href="${proyecto.repositorio}"><i class="bi bi-folder-symlink fs-4"></i></a></td>
+          <td>${proyecto.nombre_usuario} ${proyecto.apellidos_usuario}</td>
+          <td>${proyecto.created_at}</td>
+          <td>${proyecto.estado}</td>
+          <td>
+            <a
+            data-user_id = ${proyecto.user_id}
+            class="d-none d-sm-inline btn btn-sm btn-outline-primary bi bi-pencil"
+            ></a>
+          </td>
+          <td>
+            <a
+              data-user_id = ${proyecto.user_id}
+              class="d-none d-sm-inline btn btn-sm btn-outline-danger bi bi-trash3"
+            ></a>
+          </td>
+        </tr>
+              
+        `
+        })
+        // inyectamos el resultado en el tbody
+        document.querySelector('#tbodyProyectos').innerHTML = tbodyProyectos
+      }
+
+      const pintaTarjetas = (proyectos) => {
+        let tarjetasProyectos = ''
+        // Para cada proyecto del array 'proyectos'
+        proyectos.forEach(proyecto => {
+        // sumamos un tr con los datos del proyecto
+          tarjetasProyectos += // html
+        `
+        <!-- tarjeta  -->
+        <div class="col-12 col-lg-6">
+          <div class="card mb-3">
+            <div class="row g-0">
+              <div
+                class="col-4"
+                style="
+                  background-image: url(${proyecto.imagen || 'images/imagenVacia.png'});
+                  background-position: center;
+                  background-size: cover;
+                "
+              ></div>
+              <div class="col-8">
+                <div class="card-body">
+                  <h5 class="card-title">${proyecto.nombre}</h5>
+                  <p class="card-text">
+                    ${proyecto.descripcion}
+                  </p>
+                  <p class="small m-0 text-end text-italic">Autor: ${proyecto.nombre_usuario} ${proyecto.apellidos_usuario}</p>
+                  <p class="small text-end text-italic">Fecha: ${proyecto.created_at}</p>
+      
+                  <a class="btn btn-sm btn-outline-primary" href="${proyecto.enlace}"><i class="bi bi-link"></i></a>
+                  <a class="btn btn-sm btn-outline-primary" href="${proyecto.repositorio}"><i class="bi bi-folder-symlink"></i></a>
+                  <a class="btn btn-sm btn-success" href="#">${proyecto.estado}</a>
+                  <a
+                    data-user_id = ${proyecto.user_id}
+                    class="d-none d-sm-inline btn btn-sm btn-outline-primary bi bi-pencil"
+                  ></a>
+                  <a
+                    data-user_id = ${proyecto.user_id}
+                    class="d-none d-sm-inline btn btn-sm btn-outline-danger bi bi-trash3"
+                  ></a>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>  
+        `
+        })
+        
+        document.querySelector('#tabTarjetas').innerHTML = tarjetasProyectos
+      }
+      
+      // Ejecutamos la función
+      pintaTabla(proyectos)
+    }
 }

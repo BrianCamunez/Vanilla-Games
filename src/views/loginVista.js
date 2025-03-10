@@ -1,13 +1,16 @@
+import { perfiles } from '../../bd/datosPrueba'
+import { ls } from '../components/funciones'
+
 export default  {
     template:
     `
     <div class="container">
         <h1 class="mt-5 text-center">Inicia sesión</h1>
         <div class="m-5 mx-auto" style="max-width: 400px">
-          <form novalidate action="" class="form border shadow-sm p-3">
+          <form novalidate action="" class="needs-validation form border shadow-sm p-3">
             <div>
               <label for="email" class="form-label">Email:</label>
-              <input required type="email" class="form-control" />
+              <input required name="email" type="email" class="form-control" />
               <div class="invalid-feedback">
                 El formato del email no es correcto
               </div>
@@ -17,6 +20,7 @@ export default  {
               <input
                 required
                 id="pass"
+                name="pass"
                 type="password"
                 minlength="6"
                 class="form-control"
@@ -60,18 +64,57 @@ export default  {
   
       // Capturamos el formulario en una variable
       const formulario = document.querySelector('.needs-validation')
+      console.log(formulario)
       // Detectamos su evento submit (enviar)
-      formulario.addEventListener('submit', event => {
+      formulario.addEventListener('submit', (event) => {
 
-        if (!formulario.checkValidity()) {
-          event.preventDefault();
-          event.stopPropagation();
-          formulario.classList.add('was-validated');
-        }
-        else{
-          formulario.classList.remove('was-validated');
+        event.preventDefault();
+        event.stopPropagation();
 
+        if (formulario.checkValidity()) {
+          enviarDatos(formulario); // Llamamos a 'enviarDatos' solo si el formulario es válido
+        } else {
+          formulario.classList.add('was-validated'); // **Cambio**: Si no es válido, se agrega la clase 'was-validated' para mostrar los errores de validación
         }
-      },false)
+      });
+
+      function enviarDatos (formulario) {
+        const email = formulario.email.value
+        const pass = formulario.pass.value
+
+        console.log('Email:', email)
+  console.log('Password:', pass)
+  
+        // buscamos el indice del email en el array perfiles
+        const indexUser = perfiles.findIndex((user) => user.email === email) // 1
+        // Si encuentra un usuario
+        if (indexUser >= 0) {
+          // Si la contraseña es correcta
+          if (perfiles[indexUser].contraseña === pass) {
+            console.log('¡login correcto!')
+            const usuario = {
+              nombre: perfiles[indexUser].nombre,
+              apellidos: perfiles[indexUser].apellidos,
+              email: perfiles[indexUser].email,
+              rol: perfiles[indexUser].rol,
+              avatar: perfiles[indexUser].avatar,
+              user_id: perfiles[indexUser].user_id
+            }
+            // Guardamos datos de usaurio en localstorage
+            ls.setUsuario(usuario)
+            // Cargamos página home
+            window.location = '#/proyectos'
+            // Actualizamos el header para que se muestren los menús que corresponden al rol
+            header.script()
+          } else {
+            // console.log('La contraseña no corresponde')
+            alert('El usuario no existe o la contraseña no es correcta')
+          }
+        } else {
+          // console.log('El usuario no existe')
+          alert('El usuario no existe o la contraseña no es correcta')
+        }
+      }
+
     }
 }
